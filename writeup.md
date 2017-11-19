@@ -2,7 +2,7 @@
 
 [image0]: ./docs/misc/follow_me_performance_example.gif
 [image1]: ./docs/misc/follow_me_pyqt_overlay.gif
-[image2]: ./docs/misc/final_accuracy.png
+[image2]: ./docs/misc/final_accuracy.PNG
 [image3]: ./docs/misc/network_architecture.png
 
 ---
