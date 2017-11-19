@@ -2,7 +2,6 @@
 
 [image0]: ./docs/misc/follow_me_performance_example.gif
 [image1]: ./docs/misc/follow_me_pyqt_overlay.gif
-[image2]: ./docs/misc/final_accuracy.PNG
 [image3]: ./docs/misc/network_architecture.png
 
 ---
@@ -24,28 +23,28 @@ The following image details the network architecture used to train this model. I
 There are a handful of parameters that require fine-tuning in order to generate a well-trained model. The list and their descriptions are given below.
 
 * learning_rate: The rate at wthich the network can learn (update the model weights) during training in order to minimize loss. 
-> While larger learning rates should usually end up with better models and faster learning in theory, it can be observed that networks with larger learning rates can plateau earlier than those with smaller learning rates. This results in more loss during training. With this in mind, a small learning rate of 0.001 and larger number of steps per epoch of 500 were chosen.
+> While larger learning rates should usually end up with better models and faster learning in theory, it can be observed that networks with larger learning rates can plateau earlier than those with smaller learning rates. This results in more loss during training. With this in mind, a small learning rate of 0.001 was chosen.
 
 * batch_size: The number of training samples/images that get propagated through the network in a single pass.
-> This parameter is recommended to be chosen such that it is approximately equal to the training set size divided by steps per epoch. 
+> This parameter is recommended to be chosen such that it is approximately equal to the training set size divided by steps per epoch. With a chosen 100 steps per epoch and training set size (4,131), the batch size of 42 was chosen.  
 
 * num_epochs: (number of epochs) The number of times the entire training dataset gets propagated through the network.
-> Increasing the number of epochs for training improves the training accuracy without the requirement of more data. Generally, increasing this number will increase the accuracy up to a certain peak level.
+> Increasing the number of epochs for training improves the training accuracy without the requirement of more data. Generally, increasing this number will increase the accuracy up to a certain peak level. This parameter was set to 20 epochs.
 
 * steps_per_epoch: The number of batches of training images that go through the network in 1 epoch.
-> The general rule of thumb is to set this parameter to the training set size (4,131) divided by the batch size.
+> The general rule of thumb is to set this parameter to the training set size (4,131) divided by the batch size. This was chosen to be 100 steps while the batch size was adjusted accordingly.
 
 * validation_steps: number of batches of validation images that go through the network in 1 epoch. This is similar to steps_per_epoch, except validation_steps is for the validation dataset.
-> Along the same lines as the rule of thumb for the steps per epoch, this parameters should be set to the validation set size (1,184) divided by the batch size.
+> Along the same lines as the rule of thumb for the steps per epoch, this parameters should be set to the validation set size (1,184) divided by the batch size (42). This results in a validation step number of 29.
 
 The final tuning parameters defined to generate a model that meets the passing requirement are given below.
 
 ```
 learning_rate = 0.001
-batch_size = 64
+batch_size = 42
 num_epochs = 20
-steps_per_epoch = 500
-validation_steps = 50
+steps_per_epoch = 100
+validation_steps = 29
 ```
 
 #### 1x1 Convolutions vs. Fully Connected Layers
@@ -70,15 +69,13 @@ The model is capable of reliably and repeatedly detecting the actual target from
 ![pyqt overlay][image1]
 
 
-The model training resulted in a ~42% accuracy metric. While not much higher than the requirement, the model performs fairly well at locating and following the target better than the accuracy measurement suggests.
-
-![final accuracy][image2]
+The model training resulted in a ~41.5% accuracy metric. While not much higher than the requirement, the model performs fairly well at locating and following the target better than the accuracy measurement suggests.
 
 ### Improvements
 
 There are a handful of areas in which this model can be improved. From the model scoring results, it is clear that there are two glaring weaknesses in this model.
 
 1. Detecting other objects as the target
-2. Detecting the target from far away
+2. Detecting the target from very far away
 
 These can be addressed by capturing and implementing a more rigorous data set to train the model for these specific instances. It should also be noted from the PyQt detection overlay graph that the model sometimes does not fully recognize other people and displays them with patchy results. Further model training should address this issue as well.
