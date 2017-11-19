@@ -10,7 +10,7 @@ In this project, you will train a deep neural network to identify and track a ta
 ## Setup Instructions
 **Clone the repository**
 ```
-$ git clone https://github.com/udacity/RoboND-DeepLearning.git
+$ git clone https://github.com/kevinfructuoso/Deep-Learning-Drone-Follower.git
 ```
 
 **Download the data**
