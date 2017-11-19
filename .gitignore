@@ -102,4 +102,9 @@ ENV/
 .mypy_cache/
 
 RUNS/
+*runs/*
 
+# ignore excess data unnecessary for submission
+data/train/*
+data/validation/*
+data/sample_evaluation_data/*
