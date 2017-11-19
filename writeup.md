@@ -2,6 +2,7 @@
 
 [image0]: ./docs/misc/follow_me_performance_example.gif
 [image1]: ./docs/misc/follow_me_pyqt_overlay.gif
+[image2]: ./docs/misc/follow_me_full_route.gif
 [image3]: ./docs/misc/network_architecture.png
 
 ---
@@ -69,7 +70,9 @@ The model is capable of reliably and repeatedly detecting the actual target from
 ![pyqt overlay][image1]
 
 
-The model training resulted in a ~41.5% accuracy metric. While not much higher than the requirement, the model performs fairly well at locating and following the target better than the accuracy measurement suggests.
+The model training resulted in a ~41.5% accuracy metric. While not much higher than the requirement, the model performs fairly well at locating and following the target better than the accuracy measurement suggests. The resulting performance is able to track the target throughout the targets full travel route, as shown below.
+
+![full route][image2]
 
 ### Improvements
 
