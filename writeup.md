@@ -54,7 +54,9 @@ A 1x1 convolutional layer preserves spatial information (pixel location) by ensu
 
 #### Encoder and Decoder Blocks
 
-The encoder blocks in the network architecture extract features from each of the images while the decoder blocks upsamples the 1x1 convolutional layer to the same size as the original image, including spatial information. The result is that the final output image contains segmentations of each pixel from the original image.
+The encoder blocks in the network architecture extract features from each of the images. They compress the image size with each layer until it reaches the 1x1 Convolution layer. These layers focus in on smaller portions of the original image. The decoder blocks then upsample the 1x1 convolutional layer output to the same size as the original image, including spatial information. With these steps, the network is attempting to reconstruct and decode pixels from the original image. The resulting image is a semantic segmentation mask that identifies features from the image.
+
+As noted above, encoding compresses the image size. Essentially, the network is looking closely at some features and losing information about the overall picture. Decoding this output back to the original image size will not recover this information. Skip connections are implemented to address this. Skip connections work by connecting non-adjacent layers which allows the network to use information from multiple resolution images and retain information that might have otherwise been lost. This process allows the network to make better segmentation decisions.
 
 #### Trained Model Limitations
 
